@@ -24,12 +24,13 @@ def result():
                                 index=['input'])
     model = pickle.load(open("model_satisfaction.pkl","rb"))
     prediction = model.predict(input_variables)
+    output = prediction[0]
 #    ret = "prediction: " + str(prediction)
 #    if (prediction == 1):
 #        ret = "Yes"
 #    elif (prediction == 0) :
 #        ret = "No"
-    return jsonify(prediction)
+    return jsonify(output)
 # {"data": "2, 2, 3, 4, 3, 4, 3, 5, 4, 5001, 0 "}
 
 @app.route('/promotion', methods = ['POST'])
@@ -44,11 +45,12 @@ def ret():
                                 index=['input'])
     model = pickle.load(open("model_promotion.pkl","rb"))
     prediction = model.predict(input_variables)
+    output = prediction[0]
 #    ret = "prediction: " + str(prediction)
 #    if (prediction == 1):
 #        ret = "Yes"
 #    elif (prediction == 0) :
 #        ret = "No"
-    return jsonify(prediction)
+    return jsonify(output)
 
 # {"data": "4, 3, 5561, 0, 16, 3, 6, 5"}
