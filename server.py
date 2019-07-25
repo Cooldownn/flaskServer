@@ -46,12 +46,11 @@ def ret():
                                 index=['input'])
     model = pickle.load(open("model_promotion.pkl","rb"))
     prediction = model.predict(input_variables)
-    pd.Series(prediction).to_json(orient='values')
+    return jsonify(prediction=str(int(prediction)))
 #    ret = "prediction: " + str(prediction)
 #    if (prediction == 1):
 #        ret = "Yes"
 #    elif (prediction == 0) :
 #        ret = "No"
-    return prediction
 
 # {"data": "4, 3, 5561, 0, 16, 3, 6, 5"}
