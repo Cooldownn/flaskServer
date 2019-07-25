@@ -26,7 +26,8 @@ def result():
                                 index=['input'])
     model = pickle.load(open("model_satisfaction.pkl","rb"))
     prediction = model.predict(input_variables)
-    return jsonify("Prediction", int(prediction))
+    result = pd.Series(prediction).to_json(orient='values')
+    return jsonify(result)
 #    ret = "prediction: " + str(prediction)
 #    if (prediction == 1):
 #        ret = "Yes"
