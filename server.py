@@ -4,12 +4,14 @@ import numpy as np
 import pandas as pd
 import flask
 import pickle
-from flask import Flask, request, jsonify
+import json
+from flask import Flask, request
 
 #creating instance of the class
 app=Flask(__name__)
 
 @app.route('/')
+
 
 #prediction function
 @app.route('/satisfaction',methods = ['POST'])
@@ -24,13 +26,14 @@ def result():
                                 index=['input'])
     model = pickle.load(open("model_satisfaction.pkl","rb"))
     prediction = model.predict(input_variables)
-    output = prediction[0]
+    result = str(prediction)
+    ret = json.dumps(result)
 #    ret = "prediction: " + str(prediction)
 #    if (prediction == 1):
 #        ret = "Yes"
 #    elif (prediction == 0) :
 #        ret = "No"
-    return jsonify(output)
+    return ret
 # {"data": "2, 2, 3, 4, 3, 4, 3, 5, 4, 5001, 0 "}
 
 @app.route('/promotion', methods = ['POST'])
@@ -45,12 +48,12 @@ def ret():
                                 index=['input'])
     model = pickle.load(open("model_promotion.pkl","rb"))
     prediction = model.predict(input_variables)
-    output = prediction[0]
+    pd.Series(prediction).to_json(orient='values')
 #    ret = "prediction: " + str(prediction)
 #    if (prediction == 1):
 #        ret = "Yes"
 #    elif (prediction == 0) :
 #        ret = "No"
-    return jsonify(output)
+    return prediction
 
 # {"data": "4, 3, 5561, 0, 16, 3, 6, 5"}
