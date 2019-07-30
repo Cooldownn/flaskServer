@@ -16,8 +16,7 @@ app=Flask(__name__)
 #prediction function
 @app.route('/satisfaction',methods = ['POST'])
 def result():
-    headers = ['DistanceFromHome', 'EnvironmentSatisfaction', 'JobInvolvement', 'JobSatisfaction', 'PerformanceRating',
- 'RelationshipSatisfaction', 'WorkLifeBalance', 'YearsAtCompany', 'YearsSinceLastPromotion', 'MonthlyIncome', 'OverTime']
+    headers = ['EnvironmentSatisfaction','JobSatisfaction', 'PerformanceRating', 'RelationshipSatisfaction','MonthlyIncome']
     payload = request.json['data']
     values = [float(i) for i in payload.split(',')]
     input_variables = pd.DataFrame([values],
