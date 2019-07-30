@@ -1,2 +1,2 @@
 # MLServer
-Machine Learning server Python based using Flask
+Python based Machine Learning server using Flask
